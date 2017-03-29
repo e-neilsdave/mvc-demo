@@ -1,0 +1,79 @@
+{% extends "SofidCommercantBundle::dashboard.html.twig" %}
+
+{% block titre %}Modifier le Palier n&deg; {{ entity.numPalier }}{% endblock %}
+
+{% block jslogout %}
+<script type="text/javascript">
+	$(function () {
+			    
+		// Logout Click  
+		$('.logout').live('click',function() { 
+		var str="Logout"; 
+		var overlay="1"; 
+		loading(str,overlay);
+		setTimeout("unloading()",1500);
+		setTimeout( "window.location.href=window.location.pathname+'/../../../../commercant/logout'", 2000 );
+		});
+			  
+	});
+</script>
+{% endblock %}
+	    {% block jsiconlogout %}
+		<script type="text/javascript">
+	    $(function () {
+
+		    // Animation icon  Logout 
+			$('div.logout').hover(function(){
+				  var name=$(this).find('img').attr('alt');
+				  $(this).find('img').animate({ opacity: 0.4 }, 200, function(){
+					    $(this).attr('src','../../../bundles/sofidcommercant/images/'+name+'.png').animate({ opacity: 1 }, 500);									 
+				 });
+			},function(){
+				  var name=$(this).find('img').attr('name');
+				  $(this).find('img').animate({ opacity: 0.5 }, 200, function(){
+					    $(this).attr('src','../../../bundles/sofidcommercant/images/'+name+'.png').animate({ opacity: 1 }, 500);									 
+				 });
+			 })
+			 
+	    });
+		 </script>
+	    {% endblock %}
+	    
+{% block content %}
+{% if unauthorized %}
+Vous n'avez pas la permission d'acc&eacute;der &agrave; cette page!
+{% else %}                 
+
+	<form action="{{ path('update_palier', { 'id': entity.id }) }}" {{ form_enctype(edit_form) }} method="POST"id="validation_demo">
+    
+    	<input type="hidden" name="_method" value="PUT" />
+    	
+    	<!-- Third / Half column-->
+		<div class="widgets">
+		<div class="oneThree">
+        </div>
+
+        <div class="twoOne">
+
+			{{ form_errors(edit_form) }}
+	                            
+	        <div class="section ">
+	            <label>Nombre de Points</label> 
+	            <div class="controls">{{ form_widget(edit_form.nbPointPalier) }}</div>
+	        </div>                 
+	        <div class="section ">
+	            <label>R&eacute;compense</label> 
+	            <div class="controls">{{ form_widget(edit_form.recompense) }}</div>
+	        </div>
+	
+	        <div class="section last">
+	        {{ form_rest(edit_form) }}
+	        	<input type="submit" value="Modifier" class="uibutton submit_form" />
+	        </div>
+
+		</div><!-- End Third / Half column-->
+    
+	</form>
+{% endif %}
+
+{% endblock %}

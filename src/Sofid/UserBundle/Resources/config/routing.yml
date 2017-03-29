@@ -1,0 +1,7 @@
+sofid_api:
+    resource: "@SofidUserBundle/Resources/config/api_routing.yml"
+    prefix:   /api
+    
+sms_api:
+    resource: "@SofidUserBundle/Resources/config/sms_routing.yml"
+    prefix:   /commercant/sms

@@ -1,0 +1,64 @@
+{% extends "SofidFideleBundle::layout.html.twig" %}
+
+{% block content %}
+
+<div id="alertMessage"></div>
+<div id="successLogin"></div>
+<div class="text_success"><img src="{{ asset('bundles/sofidcommercant/images/loadder/loader_green.gif') }}"  alt="SoFID" /><span>Veuillez patienter</span></div>
+
+<div id="login">
+  <div class="inner">
+  <div class="logo" ><img src="{{ asset('bundles/sofidcommercant/images/logo/logo.png') }}" alt="SoFID" /></div>
+  
+  {% if error %}
+    <div align="center">Email ou Mot de passe incorrect!</div>
+  {% endif %}
+  {% if sms is defined %}
+    <div align="center">{{ sms }}</div>
+  {% endif %}
+
+      <div class="formLogin">
+
+          <form action="{{ path("authenticate_fidele") }}" method="post" name="formLogin" id="formLogin">
+
+              {#     <label for="username">{{ 'security.login.username'|trans({}, 'FOSUserBundle') }}</label>#}
+              <div class="tip">
+                  <input type="text" id="username_id" name="login" required="required" title="Email"/>
+              </div>
+              {#     <label for="password">{{ 'security.login.password'|trans({}, 'FOSUserBundle') }}</label>#}
+              <div class="tip">
+                  <input type="password" id="password" name="pass" required="required" title="Mot de Passe"/>
+              </div>
+
+              <div class="loginButton">
+                  <div style="float:left; margin-left:-9px;">
+                      <input type="checkbox" id="on_off" name="_remember_me" class="on_off_checkbox" value="1"/>
+                  </div>
+                  <div style="float:right; padding:3px 0; margin-right:-12px;">
+                      <div>
+                          <ul class="uibutton-group">
+                              <li><input type="submit" id="_submit" name="_submit"
+                                         value="{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}"/></li>
+                              {# 				   <li><a class="uibutton normal" href="#" id="forgetpass">Mot de passe oubli&eacute;</a></li>#}
+
+                          </ul>
+                      </div>
+                  </div>
+                  <div class="clear"></div>
+                  <a href="{{ path("forgotten_fidele") }}">J'ai oubli&eacute; mon mot de passe</a>
+              </div>
+
+          </form>
+      </div>
+  </div>
+    <div class="clear"></div>
+    <div class="shadow"></div>
+</div>
+
+<div class="clear"></div>
+<div class="shadow"></div>
+
+    <!--Login div-->
+<div class="clear"></div>
+
+{% endblock %}

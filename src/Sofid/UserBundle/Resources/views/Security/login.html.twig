@@ -1,0 +1,58 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% block fos_user_content %}
+
+<div id="alertMessage"></div>
+<div id="successLogin"></div>
+<div class="text_success"><img src="{{ asset('bundles/sofidcommercant/images/loadder/loader_green.gif') }}"  alt="SoFID" /><span>Veuillez patienter</span></div>
+
+<div id="login" >
+{#   <div class="ribbon"></div>#}
+  <div class="inner">
+  <div class="logo" ><img src="{{ asset('bundles/sofidcommercant/images/logo/logo.png') }}" alt="SoFID" /></div>
+  
+{% if error %}
+    <div align="center">{{ error|trans({}, 'FOSUserBundle') }}</div>
+{% endif %}
+  
+  <div class="formLogin">
+  
+  <form action="{{ path("fos_user_security_check") }}" method="post" name="formLogin"  id="formLogin">
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+
+{#     <label for="username">{{ 'security.login.username'|trans({}, 'FOSUserBundle') }}</label>#}
+    <div class="tip">
+    	<input type="text" id="username_id" name="_username" required="required" title="Username"  />
+	</div>
+{#     <label for="password">{{ 'security.login.password'|trans({}, 'FOSUserBundle') }}</label>#}
+    <div class="tip">
+    	<input type="password" id="password" name="_password" required="required" title="Password" />
+    </div>
+
+    <div class="loginButton">
+        <div style="float:left; margin-left:-9px;">
+		   <input type="checkbox" id="on_off" name="_remember_me" class="on_off_checkbox"  value="1" />
+		   <span class="f_help">{{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}</span>
+	    </div>
+		<div style="float:right; padding:3px 0; margin-right:-12px;">
+            <div> 
+                <ul class="uibutton-group">
+                   <li><input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}" /></li>
+{# 				   <li><a class="uibutton normal" href="#" id="forgetpass">Mot de passe oubli&eacute;</a></li>#}
+
+               </ul>
+            </div>
+			  
+        </div>
+			<div class="clear"></div>
+	</div>
+  </form>
+  </div>
+</div>
+  <div class="clear"></div>
+  <div class="shadow"></div>
+</div>
+
+<!--Login div-->
+<div class="clear"></div>
+{% endblock fos_user_content %}

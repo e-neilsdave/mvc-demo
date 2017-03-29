@@ -1,0 +1,35 @@
+{% if gains|length > 0 %}
+                      <div id="UITab">
+                      <div class="tab_container" >
+
+                          <div id="tab1" class="tab_content"> 
+                            <div class="load_page">
+
+                              <form>
+							  <div class="tableName inTab">
+                              <table class="display data_table1 "  id="data_table1">
+                                <thead>
+                                  <tr>
+                                    <th width="352" >Commercant</th>
+                                    <th width="174" >Nombre de Points</th>
+                                  </tr>
+                                </thead>
+                                <tbody id="gains">
+                                {% for gain in gains %}
+							        <tr>
+                                    <td>{{ gain.commercant.entreprise|e }}</td>
+                                    <td >{{ gain.nbPoints|e }}</td>
+                                  </tr>
+							    {% endfor %}
+                                </tbody>
+                              </table>
+							  </div>
+                              </form>
+                              </div>	
+                          </div><!--tab1-->
+                          
+                  </div>
+                  </div><!-- End UITab -->
+{% else %}
+Aucun point de fid&eacute;lit&eacute; pour le moment!                 
+{% endif %}

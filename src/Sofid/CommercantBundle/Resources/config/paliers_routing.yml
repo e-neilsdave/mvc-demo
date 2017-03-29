@@ -1,0 +1,33 @@
+list_paliers:
+    pattern:  /
+    defaults: { _controller: SofidUserBundle:Commercant:paliers }
+    
+add_palier:
+    pattern:  /add
+    defaults: { _controller: SofidUserBundle:Commercant:addPalier }
+    requirements:
+      _method:  POST
+    options:
+        expose: true
+    
+edit_palier:
+    pattern:  /edit/{id}
+    defaults: { _controller: SofidUserBundle:Commercant:editPalier }
+    requirements:
+      id:  \d+
+    options:
+        expose: true
+      
+update_palier:
+    pattern:  /update/{id}
+    defaults: { _controller: SofidUserBundle:Commercant:updatePalier }
+    requirements:
+      id:  \d+
+    
+delete_palier:
+    pattern:  /delete/{id}
+    defaults: { _controller: SofidUserBundle:Commercant:deletePalier }
+    requirements:
+        id:  \d+
+    options:
+        expose: true

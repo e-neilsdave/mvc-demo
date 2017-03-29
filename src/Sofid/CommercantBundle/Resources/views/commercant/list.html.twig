@@ -1,0 +1,119 @@
+{% extends "SofidCommercantBundle::dashboard.html.twig" %}
+
+        {% block javascripts %}
+        {{ parent() }}
+        <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+		<script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+	    <script type="text/javascript">
+	   $('.points').live( 'change',function(){
+                if ($("#manual_point").attr("checked")) {
+                            $('#message').removeAttr('disabled');
+                        }
+                        else {
+                            $('#message').attr('disabled', true);
+                        }
+           });
+            $(function () {
+		    $("#scan").click(function() {
+			    
+		    	 loading('Checking');
+				 $('#preloader').html('Modif...');
+				 
+				 var nb = $("#nbpts").val();
+                                 var message =$('#message').val();
+                                  var is_editable=$('input[name="point"]:checked').val();
+                                var conversion_value = $('#conversion_value').val();
+                                 
+		    	$.ajax({
+                    url: Routing.generate('change_scan', { nb: nb, message: message, is_editable:is_editable, conversion_value: conversion_value}),
+                    type: 'POST',
+                    success: function(data, textStatus, xhr) {
+                    	showSuccess('Succ&egrave;s',5000); 
+                    	unloading();
+                    },
+                    error: function(xhr, textStatus, errorThrown) {
+                    	unloading();
+                    }
+                });
+		    });
+                  $("#export").click(function() {
+                      $('#action').val('export');
+                      $('#form-fidele').submit();
+                  });
+	    
+	    });
+	    </script>
+        {% endblock %}
+
+{% block titre %}Liste des fid&egrave;les{% endblock %}
+{% block content %}
+
+<div class="widgets">
+	<div class="oneThree">
+    </div>
+    <div class="twoOne">
+
+        <div class="section ">
+           <div>
+               <label >Nombre de Points par Scan</label> 
+               <input type="text" id="nbpts" name="nbpts" value="{{ nbpts|e }}"/>
+               {% if display_editable %}
+                    <input type="radio" class='points' id='fix_point' name="point"  value="0" {% if is_editable==false%}checked{%endif%}> Fix Points
+                    <input type="radio"  class='points' id="manual_point" name="point" value="1" {% if is_editable%}checked{%endif%}>  Manual Points           
+                    </div>
+                    <br>
+                    <div class="text" style='margin-left:-140px'>
+                        <label >Message de l'écran de saisie manuelle des points</label> 
+                        <textarea  rows="5" cols="50" id="message" name="message" {% if is_editable==false%}disabled{%endif%} > {{ message|e }}</textarea>
+                    </div>
+                 {%endif%}
+                    <div style="margin-top: 7px;">
+             <label>Conversion Value</label> 
+              <input type="text" id="conversion_value" name="conversion_value" value="{{ conversionValue }}" style="margin-left: 60px;"/>       
+            <input {% if display_editable %} style='float:right ;margin-left: -358px'{%endif%} type="button" value="confirmer" class="uibutton submit_form" id="scan" />
+        </div>       
+      </div> 
+
+	</div><!-- End Third / Half column-->
+</div>
+<div class="clear"></div>
+
+{% if users|length > 0 %}
+<form id="form-fidele" action="{{path('list_fideles')}}">
+    {% if display_export %}
+        <input  type="button" value="Export Users" class="uibutton submit_form" id="export" action="export"/>
+        <input type="hidden" value="" name="action" id="action"/>
+    {%endif%}
+    <div id="UITab">
+        <div class="tab_container" >
+            <div id="tab1" class="tab_content"> 
+                <div class="load_page">
+                    <div class="tableName inTab">
+                        <table class="display data_table1 "  id="data_table1">
+                            <thead>
+                                <tr>
+                                  <th width="352" >Username</th>
+                                  <th width="174" >Date de naissance</th>
+                                  <th width="246" >Points fid&eacute;lit&eacute;s</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for user in users %}
+                            <tr>
+                                <td>{{ user.username|e }}</td>
+                                <td >{{ user.dateNaissance|e }}</td>
+                                <td >{{ user.nbpts|e }}</td>
+                              </tr>
+                            {% endfor %}
+                            </tbody>
+                         </table>
+                    </div>
+                 </div>	
+             </div><!--tab1-->
+          </div>
+      </div>
+ </form><!-- End UITab -->
+{% else %}
+Aucun fid&egrave;le pour le moment!                 
+{% endif %}
+{% endblock %}

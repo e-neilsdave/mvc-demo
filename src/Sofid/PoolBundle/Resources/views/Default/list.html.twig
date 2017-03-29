@@ -1,0 +1,52 @@
+{% extends "SofidCommercantBundle::dashboard.html.twig" %}
+
+              {% block menu %}
+                  <div id="left_menu">
+                      <ul id="main_menu" class="main_menu">
+                          <li class="limenu"><a href="{{ path('dashboard') }}"><span
+                                          class="ico gray shadow home"></span><b>Dashboard</b></a></li>
+                          <li class="limenu"><a href="{{ path('list_fideles') }}"><span
+                                          class="ico gray shadow group"></span><b>Liste des Fid&egrave;les</b></a></li>
+                          <li class="limenu"><a href="{{ path('list_paliers') }}"><span
+                                          class="ico gray shadow pyramid"></span><b>Paliers</b></a></li>
+                          <li class="limenu"><a href="{{ path('list_offres') }}"><span
+                                          class="ico gray shadow star"></span><b>Offres (Pro)</b></a></li>
+                          <li class="limenu"><a href="{{ path('sms') }}"><span class="ico gray shadow mail"></span><b>SMS (Pro)</b></a>
+                          </li>
+                          <li class="limenu select"><a href="{{ path('pool_homepage') }}"><span
+                                          class="ico gray shadow mail"></span><b>Satisfaction (Pro)</b></a></li>
+                          <li class="limenu"><a href="{{ path('fos_user_profile_edit') }}"><span
+                                          class="ico gray shadow administrator"></span><b>Profil</b></a></li>
+                          <li class="limenu"><a href="{{ path('fos_user_change_password') }}"><span
+                                          class="ico gray shadow lock"></span><b>Mot de passe</b></a></li>
+                      </ul>
+                  </div>
+              {% endblock %}
+
+{% block titre %}Satisfaction{% endblock %}
+
+{% block content %}
+    <!-- Third / Half column-->
+    <div class="widgets">
+        <a href="">Add New question</a>
+        <table width="100%">
+            <tr>
+                <th>#</th>
+                <th>Title</th>
+                <th>Questions</th>
+            </tr>
+            {% for key, question in questions %}
+            <tr>
+                <td>{{ key+1 }}</td>
+                <td>{{ question.title }}</td>
+                <td>
+                {% for k, option in question.option %}
+                    {{ option.title }},
+                {% endfor %}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+{% endblock %}

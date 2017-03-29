@@ -1,0 +1,13 @@
+_api_get_question_by_mercant:
+    pattern:  /merchantPool
+    defaults: { _controller: PoolBundle:Api:getQuestionByMercant, _format: json}
+    requirements:
+      _method:  POST
+      _format: JSON
+
+_api_save_pool:
+    pattern:  /savePool
+    defaults: { _controller: PoolBundle:Api:savePool, _format: json}
+    requirements:
+      _method:  POST
+      _format: JSON

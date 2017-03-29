@@ -1,0 +1,27 @@
+_api_login:
+    pattern:  /login
+    defaults: { _controller: SofidUserBundle:Commercant:authenticate, _format: json}
+    requirements:
+      _method:  POST
+      _format: JSON
+      
+_api_check:
+    pattern:  /check
+    defaults: { _controller: SofidUserBundle:Commercant:check, _format: json}
+    requirements:
+      _method:  POST
+      _format: JSON
+      
+_api_paliers:
+    pattern:  /paliers
+    defaults: { _controller: SofidUserBundle:Commercant:retrievePaliers, _format: json}
+    requirements:
+      _method:  POST
+      _format: JSON
+
+_api_commercant:
+    pattern:  /getcommercantbycustomer
+    defaults: { _controller: SofidUserBundle:Commercant:retrieveCommercant, _format: json}
+    requirements:
+      _method:  GET
+      _format: JSONs

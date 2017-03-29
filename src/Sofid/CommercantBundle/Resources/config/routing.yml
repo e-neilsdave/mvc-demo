@@ -1,0 +1,46 @@
+sofid_offres:
+    resource: "@SofidCommercantBundle/Resources/config/offres_routing.yml"
+    prefix:   /offres
+
+sofid_paliers:
+    resource: "@SofidCommercantBundle/Resources/config/paliers_routing.yml"
+    prefix:   /paliers
+
+dashboard:
+    pattern:  /
+    defaults: { _controller: SofidUserBundle:Commercant:dashboard }
+
+list_fideles:
+    pattern:  /fideles
+    defaults: { _controller: SofidUserBundle:Commercant:list }
+    
+commercant_logout:
+    pattern:   /logout
+    defaults: { _controller: SofidUserBundle:Commercant:logoutCommercant}
+    
+change_scan:
+    pattern:  /scan/change/{nb}
+    defaults: { _controller: SofidUserBundle:Commercant:changeScan }
+    requirements:
+      _method:  POST
+      nb:  \d+
+    options:
+        expose: true
+        
+change_ticket:
+    pattern:  /ticket/change/{nb}
+    defaults: { _controller: SofidUserBundle:Commercant:changeTicket }
+    requirements:
+      _method:  POST
+      nb:  \d+
+    options:
+        expose: true
+        
+change_ticket_ephem:
+    pattern:  /ticketephem/change/{nb}
+    defaults: { _controller: SofidUserBundle:Commercant:changeTicketEphem }
+    requirements:
+      _method:  POST
+      nb:  \d+
+    options:
+        expose: true

@@ -1,0 +1,79 @@
+{% extends "SofidAdminBundle::dashboard.html.twig" %}
+
+{% block title %}SoFID | QR Code{% endblock%}
+
+        {% block javascripts %}
+        {{ parent() }}
+        <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+		<script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+	    <script type="text/javascript">
+	    $(function () {
+		    
+		    $("#generate").click(function() {
+			    
+				var number = $("#QRNumber").val();
+
+				doqr(number-1);
+		    });
+	    
+		  	function doqr(i) {
+				
+                $.ajax({
+                    url: Routing.generate('encode_qrcode'),
+                    type: 'GET',
+                    success: function(data, textStatus, xhr) {
+                    	var value_text = "SOFID_ID:";
+        				var value_text2 = "TYPE:";
+        		
+        				var value_type = "CARD";
+        				$("#qrcodes").append('<a href="'+Routing.generate('download_qrcode', { id: data.id }, true)+'"><img height="240" id="QRImage" width="240" src="http://chart.apis.google.com/chart?cht=qr&chl='+value_text+data.id+'%'+value_text2+value_type+'&chs=240x240" /></a>');
+        				$('#error').html();
+        				if (i > 0) {
+	        				doqr(i-1);
+	        			}
+                    },
+                    error: function(xhr, textStatus, errorThrown) {
+                    	$('#error').html("Erreur lors de la g&eacute;n&eacute;ration du QrCode, Veuillez r&eacute;essayer!"); 
+                    }
+                });
+		  	}
+	    });
+	    </script>
+        {% endblock %}
+
+{% block titre %}G&eacute;n&eacute;rateur de QR Code{% endblock %}
+{% block content %}
+
+                        
+<div id="qrdiv">
+  <form >
+  
+  	<div class="widgets">
+		<div class="oneThree">
+{#                                     <div class="profileSetting" >#}
+{#                                            <div class="avartar">#}
+{#                                            <input type="file" class="fileupload" />#}
+{#                                            <p align="center"><span>Logotype du commerçant</span></p>#}
+{#                                            </div>#}
+{#                                     </div>#}
+       </div>
+
+{#        <div class="twoOne">#}
+                            
+          	<div class="section ">
+				<label>Quantit&eacute; &agrave; g&eacute;n&eacute;rer</label> 
+				<div class="controls"><input type="text" id="QRNumber" maxlength="60" value=""></div>
+			</div>
+			<div class="section ">
+				 <div class="controls"><a id="generate" class="uibutton special" style="text-decoration: none;">G&eacute;n&eacute;rer le QR Code</a></div>
+			</div>
+			<div id="qrcodes">
+				
+				
+			</div>
+            <div id="error"></div>                             
+{# 		</div><!-- End Third / Half column-->			#}
+  </form>
+</div>
+                        
+{% endblock %}

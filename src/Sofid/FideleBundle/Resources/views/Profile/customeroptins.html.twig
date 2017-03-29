@@ -1,0 +1,17 @@
+{% extends "SofidFideleBundle::dashboard.html.twig" %}
+
+{% block menu %}   
+              <div id="left_menu">
+                    <ul id="main_menu" class="main_menu">
+                      <li class="limenu"><a href="{{ path('home_fidele') }}"><span class="ico gray shadow home" ></span><b>Accueil</b></a></li>
+					  <li class="limenu" ><a href="{{ path('edit_fidele') }}" ><span class="ico gray shadow administrator"></span><b>Profil</b></a></li>
+					  <li class="limenu select" ><a href="{{ path('customeroptin_fidele') }}" ><span class="ico gray shadow communication"></span><b>Communications</b></a></li>
+                    </ul>
+              </div>          
+{% endblock %} 
+
+{% block titre %}Communications{% endblock %}
+
+{% block content %}
+	{% include "SofidFideleBundle:Profile:customeroption_content.html.twig" %}
+{% endblock %}

@@ -1,0 +1,77 @@
+{% extends 'SonataBlockBundle:Block:block_base.html.twig' %}
+
+{% block title %}SoFID | QR Code{% endblock%}
+
+        {% block stylesheets %}
+        {{ parent() }}
+        <!-- Link css-->
+	    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/dashboard/css/zice.style.css') }}"/>
+        {% endblock %}
+
+        {% block javascripts %}
+        {{ parent() }}
+	    <script type="text/javascript">
+		  
+		  //  QR Code generate();
+		  function doqr() {
+				var value_id = $("#QRValue").val();
+				var value_text = "SOFID_ID:";
+				var value_text2 = "TYPE:";
+				var value_type = "CARD";
+				$("#QRImage").attr("src", "http://chart.apis.google.com/chart?cht=qr&chl=" + value_text + value_id + "%" + value_text2 + value_type + "&chs=240x240");
+				$("#QRImage").show();
+		}
+		
+	    </script>
+        {% endblock %}
+
+
+{% block block %}
+            
+            <div id="content">
+                <div class="inner">
+						<div class="logo"></div>
+                            <ul  id="shortcut">
+                             
+                            </ul>
+                    <div class="clear"></div>
+                    
+					<!-- full width -->
+                    <div class="widget">
+                        <div class="header"><span><span class="ico gray barcode"></span>G&eacute;n&eacute;rateur de QR Code</span></div><!-- End header -->	
+                        <div class="content" >
+                        
+<div id="qrdiv">
+  <form >
+                                        <div class="section">
+                                            <label>Identifiant</label>
+                                            <div>
+                                                <input type="text" id="QRValue" maxlength="60" value="">
+												<span class="f_help">SOFID_ID</span>
+                                            </div>
+											<label>Smartphone checkbox</label>
+											<div>
+												<input type="checkbox"  id="QRValue2" class="on_off_checkbox" checked="checked"  />
+										   </div>
+                                        </div>
+                                        <div class="section">
+                                            <div>
+												<a  class="uibutton special"onClick="doqr();" style="text-decoration: none;">G&eacute;n&eacute;rer le QR Code</a>
+                                            </div>
+                                        </div>
+                                        <div class="section last">
+											<center><img height="240" id="QRImage" width="240" style="display: none;" /> </center>
+                                        </div>
+										
+  </form>
+</div>
+                        
+                        </div><!-- End content -->
+                    </div><!-- End full width -->
+
+					<!-- clear fix -->
+					<div class="clear"></div>
+
+                </div> <!--// End inner -->
+              </div> <!--// End content --> 
+{% endblock %}

@@ -1,0 +1,7 @@
+parameters:
+#    pool.example.class: Sofid\PoolBundle\Example
+
+services:
+#    pool.example:
+#        class: %pool.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

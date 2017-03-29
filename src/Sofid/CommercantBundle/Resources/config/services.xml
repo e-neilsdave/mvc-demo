@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <!--
+    <parameters>
+        <parameter key="sofid_commercant.example.class">Sofid\CommercantBundle\Example</parameter>
+    </parameters>
+
+    <services>
+        <service id="sofid_commercant.example" class="%sofid_commercant.example.class%">
+            <argument type="service" id="service_id" />
+            <argument>plain_value</argument>
+            <argument>%parameter_name%</argument>
+        </service>
+    </services>
+    -->
+    
+<!--     <services> -->
+<!-- 	    <service id="app_core.listener.login" class="App\CoreBundle\EventListener\SecurityListener" scope="request"> -->
+<!-- 	    <tag name="kernel.event_listener" event="security.interactive_login" method="onSecurityInteractiveLogin"/> -->
+<!-- 		</service> -->
+<!--     </services> -->
+
+<!-- <services> -->
+<!--         <service id="sonata.user.profile.form.type" class="Application\Sonata\UserBundle\Form\Type\ProfileType"> -->
+<!--             <argument>%fos_user.model.user.class%</argument> -->
+<!--             <tag name="form.type" alias="sofid_edit_commercant" /> -->
+<!--         </service> -->
+<!--     </services> -->
+</container>

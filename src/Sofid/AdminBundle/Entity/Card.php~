@@ -1,0 +1,148 @@
+<?php
+
+namespace Sofid\AdminBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Card
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="Sofid\AdminBundle\Entity\CardRepository")
+ */
+class Card
+{
+	const TYPE_CARD  = 'CARD';
+	const TYPE_MOBILE     = 'MOBILE_APP';
+	
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="encrypted_id", type="string")
+     */
+    private $encryptedId;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Type", type="string", length=10)
+     */
+    private $type;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="Nb_scan", type="integer")
+     */
+    private $nbScan;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="cards", cascade={"persist"})
+     * @ORM\JoinColumn(name="Id_user", referencedColumnName="id", nullable=true)
+     **/
+    private $user;
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set nbScan
+     *
+     * @param integer $nbScan
+     * @return Card
+     */
+    public function setNbScan($nbScan)
+    {
+        $this->nbScan = $nbScan;
+    
+        return $this;
+    }
+
+    /**
+     * Get nbScan
+     *
+     * @return integer 
+     */
+    public function getNbScan()
+    {
+        return $this->nbScan;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \Sofid\AdminBundle\Entity\User $user
+     * @return Card
+     */
+    public function setUser(\Sofid\AdminBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+    
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Sofid\AdminBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+    
+    public function __toString()
+    {
+    	return sprintf("%d", $this->getId());
+    }
+    
+    /**
+     * @ORM\PrePersist
+     */
+    public function setPreEncryptedId()
+    {
+    	$salt = 'jhgggygkyuT45dsqqsdfqszefq54ds';
+    	$encryptedId = sprintf("%d", ($salt.$this->id));
+    	$this->encryptedId = hash('sha512',($encryptedId));
+    }
+
+    /**
+     * Set encryptedId
+     *
+     * @param string $encryptedId
+     * @return Card
+     */
+    public function setEncryptedId($encryptedId)
+    {
+        $this->encryptedId = $encryptedId;
+    
+        return $this;
+    }
+
+    /**
+     * Get encryptedId
+     *
+     * @return string 
+     */
+    public function getEncryptedId()
+    {
+        return $this->encryptedId;
+    }
+}

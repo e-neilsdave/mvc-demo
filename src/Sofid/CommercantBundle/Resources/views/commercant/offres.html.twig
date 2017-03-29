@@ -1,0 +1,90 @@
+{% extends "SofidCommercantBundle::dashboard.html.twig" %}
+
+{% block javascripts %}
+{{ parent() }}
+<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+<script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+<script type='text/javascript' src='{{ asset('bundles/sofidcommercant/js/jquery.weekcalendar.js.min.js') }}'></script>
+<script type='text/javascript' src='{{ asset('bundles/sofidcommercant/js/calendrier.js') }}'></script>
+<script type='text/javascript' src='{{ asset('bundles/sofidcommercant/js/jquery.upload.js') }}'></script>
+{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+<style type='text/css'>
+
+	body {
+		font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+		margin: 0;
+	}
+	
+	h1 {
+		margin: 0;
+		padding: 0.5em;
+	}
+	
+	p.description {
+		font-size: 0.8em;
+		padding: 1em;
+		position: absolute;
+		top: 3.2em;
+		margin-right: 400px;
+	} 
+	
+	#message {
+		font-size: 0.7em;
+		position: absolute;
+		top: 1em; 
+		right: 1em;
+		width: 350px;
+		display: none;
+		padding: 1em;
+		background: #ffc;
+		border: 1px solid #dda;
+	}
+	
+</style>
+<link rel='stylesheet' type='text/css' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/smoothness/jquery-ui.css' />
+<link rel='stylesheet' type='text/css' href='{{ asset('bundles/sofidcommercant/css/jquery.weekcalendar.css') }}' />
+<link rel='stylesheet' type='text/css' href='{{ asset('bundles/sofidcommercant/css/calendrier.css') }}' />
+{% endblock %}
+        
+{% block titre %}Liste des offres{% endblock %}
+
+{% block content %}
+	<h1>Calendrier des Offres &eacute;ph&eacute;m&egrave;res</h1>
+	<div id='calendar'></div>
+		<div id="event_edit_container">
+		<form enctype="multipart/form-data" method="post">
+			<ul id="fields">
+				<li>
+					<span>Date: </span><span class="date_holder"></span> 
+				</li>
+				<li>
+					<label for="start">Date de d&eacute;but: </label><select name="start"><option value="">S&eacute;lectionnez la date de d&eacute;but</option></select>
+				</li>
+				<li>
+					<label for="end">Date de fin: </label><select name="end"><option value="">Selectionnez la date de fin</option></select>
+				</li>
+				<li>
+					<label for="title">Titre: </label><input type="text" name="title" />
+				</li>
+				<li>
+					<label for="recompense">R&eacute;compense: </label><input type="text" name="recompense" />
+				</li>
+				<li>
+					<label for="commentaires">Message: </label><textarea name="commentaires" ></textarea>
+				</li>
+                                <li>
+					<label for="img">Image: </label><input type="file" name="img" accept="image/gif, image/jpeg, image/png"/>
+				</li>
+				<li>
+					<label for="nbpts">Nombre de Points: </label><input type="number" name="nbpts" />
+				</li>
+				<li>
+					<br />Envoyer un SMS : <input type="checkbox" name="smscheck" id="smscheck" value="1"> 
+				</li>
+			</ul>
+		</form>
+	</div>
+{% endblock %}

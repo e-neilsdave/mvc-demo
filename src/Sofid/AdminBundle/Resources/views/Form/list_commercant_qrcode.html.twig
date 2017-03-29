@@ -1,0 +1,6 @@
+<td width="53">
+{% if object.code %}
+    {#<img height="240" id="QRImage" width="240" src="http://chart.apis.google.com/chart?cht=qr&chl=SOFID_ID:{{ object.code }}+%TYPE:CARD&chs=240x240" />#}
+    <a href="{{ path('commercant_download_qrcode', {id: object.id}) }}">Download code</a>
+{% endif %}
+</td>

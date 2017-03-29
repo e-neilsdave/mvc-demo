@@ -1,0 +1,27 @@
+pool_homepage:
+    pattern:  /
+    defaults: { _controller: PoolBundle:Default:index }
+
+pool_result:
+    pattern:  /results
+    defaults: { _controller: PoolBundle:Default:results }
+
+pool_save:
+    pattern:  /save
+    defaults: { _controller: PoolBundle:Default:save }
+    requirements:
+          _method:  POST
+    options:
+          expose: true
+
+pool_edit:
+    pattern:  /edit
+    defaults: { _controller: PoolBundle:Default:edit }
+    requirements:
+          _method:  POST
+    options:
+          expose: true
+
+sofid_api:
+    resource: "@PoolBundle/Resources/config/api_routing.yml"
+    prefix:   /api

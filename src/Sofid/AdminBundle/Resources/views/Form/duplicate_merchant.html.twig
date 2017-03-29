@@ -1,0 +1,5 @@
+<td width="53">
+    {% if object.code %}
+        <a href="{{ path('duplicate_commercant', {id: object.id}) }}">Duplicate merchant</a>
+    {% endif %}
+</td>

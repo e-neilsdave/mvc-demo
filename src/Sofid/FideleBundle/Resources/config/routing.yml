@@ -1,0 +1,34 @@
+login_fidele:
+    pattern:  /login
+    defaults: { _controller: SofidFideleBundle:Fidele:login }
+    
+logout_fidele:
+    pattern:  /logout
+    defaults: { _controller: SofidFideleBundle:Fidele:logout }
+    
+edit_fidele:
+    pattern:  /profile
+    defaults: { _controller: SofidFideleBundle:Fidele:editFidele }
+    
+update_fidele:
+    pattern:  /update
+    defaults: { _controller: SofidFideleBundle:Fidele:updateFidele }
+    
+home_fidele:
+    pattern:  /
+    defaults: { _controller: SofidFideleBundle:Fidele:home }
+    
+authenticate_fidele:
+    pattern:  /authenticate
+    defaults: { _controller: SofidFideleBundle:Fidele:authenticate }
+    
+forgotten_pass_fidele:
+    pattern:  /forgotten_password
+    defaults: { _controller: SofidFideleBundle:Fidele:forgottenPass }
+    
+forgotten_fidele:
+    pattern:  /forgotten
+    defaults: { _controller: SofidFideleBundle:Fidele:forgotten }
+customeroptin_fidele:
+    pattern:  /customer_optin
+    defaults: { _controller: SofidFideleBundle:Fidele:customerOption }	

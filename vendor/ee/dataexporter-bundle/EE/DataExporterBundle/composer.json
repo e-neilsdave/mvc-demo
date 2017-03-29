@@ -1,0 +1,30 @@
+{
+    "name": "ee/dataexporter-bundle",
+    "type": "symfony-bundle",
+    "description": "Easy export data to CSV, XML, HTML, JSON or XLS",
+    "keywords": ["exporter","csv","xls", "xml", "json"],
+    "homepage": "http://laboratorium.ee",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Piotr Antosik",
+            "email": "mail@piotrantosik.com",
+            "homepage": "http://piotrantosik.com",
+            "role": "Developer"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.3.3",
+        "symfony/framework-bundle": "~2.1",
+        "symfony/http-foundation": "~2.1",
+        "symfony/property-access": "~2.1"
+    },
+    "require-dev": {
+        "symfony/yaml": "~2.1"
+    },
+    "autoload": {
+        "psr-0": { "EE\\DataExporterBundle": "" }
+    },
+    "target-dir": "EE/DataExporterBundle"
+}

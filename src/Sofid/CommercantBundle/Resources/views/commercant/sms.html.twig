@@ -1,0 +1,104 @@
+{% extends "SofidCommercantBundle::dashboard.html.twig" %}
+
+        {% block javascripts %}
+        {{ parent() }}
+        <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+		<script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+	    <script type="text/javascript">
+	    $(function () {
+            $('#commentaires').keyup(function(){
+                $("#char-counter").text((160 - $(this).val().length));
+            });
+		    $("#submit").click(function() {
+			    
+		    	 loading('Checking');
+				 $('#preloader').html('Envoi...');
+				 
+				 var msg = $("#commentaires").val();
+				var custfreq = $('#custfreq').val();
+				var custfreqcondition = $('#custfreqcondition').val();
+				var custpur = $('#custpur').val();
+				var custpurcondition = $('#custpurcondition').val();
+				var date1 = $('#date1').val();
+				var date2 = $('#date2').val();
+		    	$.ajax({
+                    url: Routing.generate('_sms_send'),
+                    type: 'POST',
+                    data: { msg: msg, custfreq:custfreq,custfreqcondition:custfreqcondition,custpur:custpur,custpurcondition:custpurcondition,date1:date1,date2:date2 },
+                    success: function(data, textStatus, xhr) {
+                        if (data.error)
+                        {
+                        	if (data.error == "2")
+                            {
+                        		showError('Aucun fid&egrave;le',5000);
+                            }else
+                            {
+                            	showError('Echec',5000);
+                            }
+                        	unloading();
+                        }else {
+	                    	showSuccess('Succ&egrave;s',5000); 
+	                    	unloading();
+                        }
+                    },
+                    error: function(xhr, textStatus, errorThrown) {
+                    	unloading();
+                    }
+                });
+		    });
+	    
+	    });
+	    </script>
+        {% endblock %}
+
+{% block titre %}Envoyer un SMS{% endblock %}
+	    
+{% block content %}
+
+	<form action=""  method="POST"id="validation_demo">
+    	
+    	<!-- Third / Half column-->
+		<div class="widgets">
+		<div class="oneThree">
+        </div>
+
+        <div class="twoOne">
+			<label>Filters</label><hr/>
+			<div class="section ">
+				<label>Custpmer Frequency</label>
+	            <div class="controls">
+					<input type="text" name="custfreq" id="custfreq" />
+					<select id="custfreqcondition" name="custfreqcondition">
+						<option value=">=">Atleast</option>
+						<option value="<=">Maximum</option>
+					</select>
+				</div>
+				<label>Customer Purchase</label>
+	            <div class="controls">
+					<input type="text" name="custpur" id="custpur" />
+					<select id="custpurcondition" name="custpurcondition">
+						<option value=">=">Atleast</option>
+						<option value="<=">Maximum</option>
+					</select>
+				</div>
+	            <label>First date</label>
+	            <div class="controls"><input type="text" name="date1" id="date1"  /></div>
+				<label>Second date</label>
+	            <div class="controls"><input type="text" name="date2" id="date2"  /></div>
+	        </div>				  
+			<label>Send Message</label><hr/>
+	        <div class="section ">
+	            <label>Message &agrave; envoyer</label>
+	            <div class="controls"><textarea name="commentaires" id="commentaires" maxlength="160" required></textarea></div>
+	            <div class="controls"><p><span id="char-counter">160</span>/160 caractères</p></div>
+	        </div>
+	
+	        <div class="section last">
+	        	<input type="button" value="confirmer" class="uibutton submit_form" id="submit" />
+	        </div>
+
+        </div><!-- End Third / Half column-->
+
+    </form>
+
+{% endblock %}

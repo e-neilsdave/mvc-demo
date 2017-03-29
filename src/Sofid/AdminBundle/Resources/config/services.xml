@@ -1,0 +1,120 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <!--
+    <parameters>
+        <parameter key="sofid_admin.example.class">Sofid\AdminBundle\Example</parameter>
+    </parameters>
+
+    <services>
+        <service id="sofid_admin.example" class="%sofid_admin.example.class%">
+            <argument type="service" id="service_id" />
+            <argument>plain_value</argument>
+            <argument>%parameter_name%</argument>
+        </service>
+    </services>
+    -->
+<!--     <services> -->
+<!-- 	    <service id="sonata.block.service.qrcode" class="Sofid\AdminBundle\Block\QrcodeBlockService"> -->
+<!-- 		    <tag name="sonata.block" /> -->
+<!-- 		    <argument>sonata.block.service.qrcode</argument> -->
+<!-- 		    <argument type="service" id="templating" /> -->
+<!-- 		</service> -->
+<!--     </services> -->
+
+    <services>
+
+<!--         <service id="sofid_user.registration.form.type" class="Sofid\AdminBundle\Form\Type\RegistrationFormType"> -->
+<!--             <tag name="form.type" alias="sofid_user_registration" /> -->
+<!--             <argument>%fos_user.model.user.class%</argument> -->
+<!--         </service> -->
+        
+      <service id="sonata.admin.commercant" class="Sofid\AdminBundle\Admin\CommercantAdmin">
+          <tag name="sonata.admin" manager_type="orm" group="Users" label="Commercant"/>
+          <argument />
+          <argument>Sofid\UserBundle\Entity\Commercant</argument>
+          <argument>SonataAdminBundle:CRUD</argument>
+          <call method="setTranslationDomain">
+              <argument>SofidAdminBundle</argument>
+          </call>
+      </service>
+        
+       <service id="sonata.admin.card" class="Sofid\AdminBundle\Admin\CardAdmin">
+          <tag name="sonata.admin" manager_type="orm" group="Cards" label="Card"/>
+          <argument />
+          <argument>Sofid\AdminBundle\Entity\Card</argument>
+          <argument>SonataAdminBundle:CRUD</argument>
+          <call method="setTranslationDomain">
+              <argument>SofidAdminBundle</argument>
+          </call>
+      </service>
+      
+      <service id="sonata.admin.user" class="Sofid\AdminBundle\Admin\UserAdmin">
+          <tag name="sonata.admin" manager_type="orm" group="Users" label="Fidèles"/>
+          <argument />
+          <argument>Sofid\AdminBundle\Entity\User</argument>
+          <argument>SonataAdminBundle:CRUD</argument>
+          <call method="setTranslationDomain">
+              <argument>SofidAdminBundle</argument>
+          </call>
+      </service>
+      
+      <service id="sonata.admin.offre" class="Sofid\AdminBundle\Admin\OffreAdmin">
+          <tag name="sonata.admin" manager_type="orm" group="Offres" label="Offre"/>
+          <argument />
+          <argument>Sofid\AdminBundle\Entity\Offre</argument>
+          <argument>SonataAdminBundle:CRUD</argument>
+          <call method="setTranslationDomain">
+              <argument>SofidAdminBundle</argument>
+          </call>
+      </service>
+      
+      <service id="sonata.admin.palier" class="Sofid\AdminBundle\Admin\PalierAdmin">
+          <tag name="sonata.admin" manager_type="orm" group="Users" label="Palier"/>
+          <argument />
+          <argument>Sofid\AdminBundle\Entity\Palier</argument>
+          <argument>SonataAdminBundle:CRUD</argument>
+          <call method="setTranslationDomain">
+              <argument>SofidAdminBundle</argument>
+          </call>
+      </service>
+      
+      <service id="sonata.admin.gain" class="Sofid\AdminBundle\Admin\GainAdmin">
+          <tag name="sonata.admin" manager_type="orm" group="Users" label="Gain"/>
+          <argument />
+          <argument>Sofid\AdminBundle\Entity\Gain</argument>
+          <argument>SonataAdminBundle:CRUD</argument>
+          <call method="setTranslationDomain">
+              <argument>SofidAdminBundle</argument>
+          </call>
+      </service>
+      
+      <service id="sonata.admin.categories" class="Sofid\AdminBundle\Admin\CategoriesAdmin">
+          <tag name="sonata.admin" manager_type="orm" group="Category" label="Category"/>
+          <argument />
+          <argument>Sofid\AdminBundle\Entity\Categories</argument>
+          <argument>SonataAdminBundle:CRUD</argument>
+          <call method="setTranslationDomain">
+              <argument>SofidAdminBundle</argument>
+          </call>
+      </service>
+
+        <service id="sonata.admin.city" class="Sofid\AdminBundle\Admin\CityAdmin">
+            <tag name="sonata.admin" manager_type="orm" group="City" label="City"/>
+            <argument />
+            <argument>Sofid\AdminBundle\Entity\City</argument>
+            <argument>SonataAdminBundle:CRUD</argument>
+            <call method="setTranslationDomain">
+                <argument>SofidAdminBundle</argument>
+            </call>
+        </service>
+
+      <service id="sofid.sofid_encoder" class="Sofid\AdminBundle\Security\Encoder\SofidEncoder">
+      </service>
+
+    </services>
+
+</container>

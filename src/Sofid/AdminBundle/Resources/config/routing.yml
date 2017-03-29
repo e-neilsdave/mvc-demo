@@ -1,0 +1,39 @@
+qrcode:
+    pattern:  /admin/qrcode
+    defaults: { _controller: SofidAdminBundle:User:qrcode }
+    options:
+        expose: true
+    
+commercant_download_qrcode:
+    pattern:  /admin/commercant/qrcode/download/{id}
+    defaults: { _controller: SofidAdminBundle:User:commercantQrCodeDownload }
+    options:
+        expose: true
+
+duplicate_commercant:
+    pattern:  /admin/commercant/duplicate/{id}
+    defaults: { _controller: SofidAdminBundle:User:duplicateMerchant }
+    options:
+        expose: true
+
+download_qrcode:
+    pattern:  /download/{id}
+    defaults: { _controller: SofidAdminBundle:User:download }
+    options:
+        expose: true
+
+update_qrcode:
+    pattern:  /admin/update-qr
+    defaults: { _controller: SofidAdminBundle:User:udpateQrCodeAllMerchant }
+    options:
+        expose: true
+        
+encode_qrcode:
+  pattern:  encode
+  defaults: { _controller: SofidAdminBundle:User:encode}
+  options:
+        expose: true
+        
+sofid_api:
+    resource: "@SofidAdminBundle/Resources/config/api_routing.yml"
+    prefix:   /api

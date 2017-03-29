@@ -1,0 +1,196 @@
+_api_login:
+    pattern:  /login
+    defaults: { _controller: SofidUserBundle:Commercant:authenticate, _format: json}
+    requirements:
+      _method:  POST
+      _format: JSON
+      
+_api_user_login:
+    pattern:  /userlogin
+    defaults: { _controller: SofidAdminBundle:User:authenticate, _format: json}
+    requirements:
+      _method:  POST
+      _format: JSON
+      
+_api_scan:
+    pattern:  /scan
+    defaults: { _controller: SofidAdminBundle:User:scan, _format: json}
+    requirements:
+      _method:  POST
+      _format: JSON
+      
+_api_scan_v2:
+    pattern:  /scan-v2
+    defaults: { _controller: SofidAdminBundle:User:scanV2, _format: json}
+    requirements:
+      _method:  POST
+      _format: JSON
+      
+_api_scan_by_email_or_phone:
+    pattern:  /scan-by-email-or-phone
+    defaults: { _controller: SofidAdminBundle:User:scanByEmailOrPhone, _format: json}
+    requirements:
+      _method:  POST
+      _format: JSON
+      
+_api_scan_by_email_or_phone_v2:
+    pattern:  /scan-by-email-or-phone-v2
+    defaults: { _controller: SofidAdminBundle:User:scanByEmailOrPhoneV2, _format: json}
+    requirements:
+      _method:  POST
+      _format: JSON
+      
+_api_update_pts:
+    pattern:  /updatepts
+    defaults: { _controller: SofidAdminBundle:User:updatePts, _format: json}
+    requirements:
+      _method:  POST
+      _format: JSON
+      
+_api_check:
+    pattern:  /check
+    defaults: { _controller: SofidUserBundle:Commercant:check, _format: json}
+    requirements:
+      _method:  POST
+      _format: JSON
+      
+_api_subscribe:
+    pattern:  /register
+    defaults: { _controller: SofidAdminBundle:User:register, _format: json}
+    requirements:
+      _method:  POST
+      _format: JSON
+      
+_api_edit:
+    pattern:  /edit
+    defaults: { _controller: SofidAdminBundle:User:edit, _format: json}
+    requirements:
+      _method:  POST
+      _format: JSON
+
+_api_retrieve:
+    pattern:  /retrieve
+    defaults: { _controller: SofidAdminBundle:User:retrieve, _format: json}
+    requirements:
+      _method:  POST
+      _format: JSON
+      
+_api_new:
+    pattern:  /new
+    defaults: { _controller: SofidAdminBundle:User:new, _format: json}
+    requirements:
+      _method:  POST
+      _format: JSON
+      
+_api_paliers:
+    pattern:  /paliers
+    defaults: { _controller: SofidUserBundle:Commercant:retrievePaliers, _format: json}
+    requirements:
+      _method:  POST
+      _format: JSON
+      
+_api_get_my_commercants:
+    pattern:  /commercants
+    defaults: { _controller: SofidAdminBundle:User:getMyCommercants, _format: json}
+    requirements:
+      _method:  POST
+      _format: JSON
+      
+_api_get_all_commercants:
+    pattern:  /allcommercants
+    defaults: { _controller: SofidAdminBundle:User:getAllCommercants, _format: json}
+    requirements:
+      _method:  POST
+      _format: JSON
+      
+_api_get_commercant:
+    pattern:  /commercant
+    defaults: { _controller: SofidAdminBundle:User:getCommercant, _format: json}
+    requirements:
+      _method:  POST
+      _format: JSON
+      
+_api_new_card:
+    pattern:  /newcard
+    defaults: { _controller: SofidAdminBundle:Card:createMobileCard, _format: json}
+    requirements:
+      _method:  POST
+      _format: JSON
+      
+_api_user_partage:
+    pattern:  /share
+    defaults: { _controller: SofidAdminBundle:User:share, _format: json}
+    requirements:
+      _method:  POST
+      _format: JSON
+
+_api_commercant_offer:
+    pattern:  /comercant/offer
+    defaults: { _controller: SofidAdminBundle:User:getCommercantOfferAndPoint, _format: json}
+    requirements:
+      _method:  POST
+      _format: JSON
+
+_api_commercant_by_qrcode:
+    pattern:  /comercant
+    defaults: { _controller: SofidAdminBundle:User:getCommercantByQrcode, _format: json}
+    requirements:
+      _method:  POST
+      _format: JSON
+
+_api_commercant_offer_tablet:
+    pattern:  /comercant/offer-tablet
+    defaults: { _controller: SofidAdminBundle:User:getCommercantOfferAndPointForTablet, _format: json}
+    requirements:
+      _method:  POST
+      _format: JSON
+
+_api_all_offer:
+    pattern:  /get-all-offer
+    defaults: { _controller: SofidAdminBundle:Offre:getAllOffers, _format: json}
+    requirements:
+      _method:  GET
+      _format: JSON
+
+_api_user_propose:
+    pattern:  /propose
+    defaults: { _controller: SofidAdminBundle:User:proposal, _format: json}
+    requirements:
+      _method:  POST
+      _format: JSON
+
+_api_log_time_spent:
+    pattern:  /log-time-spent
+    defaults: { _controller: SofidAdminBundle:User:timeSpentLog, _format: json}
+    requirements:
+      _method:  POST
+      _format: JSON
+
+_api_all_city:
+    pattern:  /get-all-city
+    defaults: { _controller: SofidAdminBundle:City:retrieve, _format: json}
+    requirements:
+      _method:  GET
+      _format: JSON
+
+_api_city_by_id:
+    pattern:  /get-city-by-id/{id}
+    defaults: { _controller: SofidAdminBundle:City:getSingleCity, _format: json}
+    requirements:
+      _method: GET
+      _format: JSON
+      id: "\d+"
+
+_api_commercant:
+    pattern:  /getcommercantbycustomer
+    defaults: { _controller: SofidUserBundle:Commercant:retrieveCommercant, _format: json}
+    requirements:
+      _method:  POST
+      _format: JSONs	  	  
+
+_api_updatecustomeroption:
+    pattern:  /updateCustomerOptionsAction
+    defaults: { _controller: SofidUserBundle:Commercant:updateCustomerOptions, _format: json}
+    requirements:
+      _method:  POST
+      _format: JSONs

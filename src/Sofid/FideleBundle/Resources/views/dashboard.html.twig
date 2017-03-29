@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        <meta name="description" content=""/>
+        <meta name="keywords" content=""/>
+        
+        <title>SoFID | Dashboard</title>
+
+        <!-- Link shortcut icon-->
+        <link rel="shortcut icon" type="image/ico" href="{{ asset('bundles/sofidcommercant/images/favicon2.ico') }}"/> 
+        
+        {% block stylesheets %}
+        <!-- Link css-->
+        <link rel="stylesheet" type="text/css" href="{{ asset('bundles/sofidcommercant/css/zice.style.css') }}"/>
+        {% endblock %}
+		
+		{% block javascripts %}
+		<!--[if lte IE 8]><script language="javascript" type="text/javascript" src="{{ asset('bundles/sofidcommercant/components/flot/excanvas.min.js') }}"></script><![endif]-->  
+        <script type="text/javascript" src="{{ asset('bundles/sofidcommercant/js/jquery.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/sofidcommercant/components/ui/jquery.ui.min.js') }}"></script> 
+        <script type="text/javascript" src="{{ asset('bundles/sofidcommercant/components/ui/jquery.autotab.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/sofidcommercant/components/ui/timepicker.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/sofidcommercant/components/colorpicker/js/colorpicker.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/sofidcommercant/components/checkboxes/iphone.check.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/sofidcommercant/components/elfinder/js/elfinder.full.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/sofidcommercant/components/datatables/dataTables.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/sofidcommercant/components/datatables/ColVis.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/sofidcommercant/components/scrolltop/scrolltopcontrol.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/sofidcommercant/components/fancybox/jquery.fancybox.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/sofidcommercant/components/jscrollpane/mousewheel.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/sofidcommercant/components/jscrollpane/mwheelIntent.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/sofidcommercant/components/jscrollpane/jscrollpane.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/sofidcommercant/components/spinner/ui.spinner.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/sofidcommercant/components/tipsy/jquery.tipsy.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/sofidcommercant/components/editor/jquery.cleditor.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/sofidcommercant/components/chosen/chosen.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/sofidcommercant/components/confirm/jquery.confirm.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/sofidcommercant/components/validationEngine/jquery.validationEngine.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/sofidcommercant/components/validationEngine/jquery.validationEngine-en.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/sofidcommercant/components/vticker/jquery.vticker-min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/sofidcommercant/components/sourcerer/sourcerer.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/sofidcommercant/components/fullcalendar/fullcalendar.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/sofidcommercant/components/flot/flot.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/sofidcommercant/components/flot/flot.pie.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/sofidcommercant/components/flot/flot.resize.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/sofidcommercant/components/flot/graphtable.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/sofidcommercant/components/uploadify/swfobject.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/sofidcommercant/components/uploadify/uploadify.js') }}"></script>        
+        <script type="text/javascript" src="{{ asset('bundles/sofidcommercant/components/checkboxes/customInput.jquery.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/sofidcommercant/components/effect/jquery-jrumble.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/sofidcommercant/components/filestyle/jquery.filestyle.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/sofidcommercant/components/placeholder/jquery.placeholder.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('bundles/sofidcommercant/components/Jcrop/jquery.Jcrop.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/sofidcommercant/components/imgTransform/jquery.transform.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/sofidcommercant/components/webcam/webcam.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('bundles/sofidcommercant/components/rating_star/rating_star.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('bundles/sofidcommercant/components/dualListBox/dualListBox.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('bundles/sofidcommercant/components/smartWizard/jquery.smartWizard.min.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('bundles/sofidcommercant/components/maskedinput/jquery.maskedinput.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/sofidcommercant/components/highlightText/highlightText.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('bundles/sofidcommercant/components/elastic/jquery.elastic.source.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/sofidcommercant/js/jquery.cookie.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/sofidcommercant/js/zice.custom.js') }}"></script>
+		{% endblock %}
+		
+		{% block jslogout %}
+		<script type="text/javascript">
+	    $(function () {
+		    
+		// Logout Click  
+		$('.logout').live('click',function() { 
+			  var str="Logout"; 
+			  var overlay="1"; 
+			  loading(str,overlay);
+			  setTimeout("unloading()",1500);
+			  setTimeout( "window.location.href=window.location.pathname+'/../../fidele/logout'", 2000 );
+		  });
+		  
+	    });
+	    </script>
+	    {% endblock %}
+		</head>        
+        <body class="dashborad">        
+        <div id="alertMessage" class="error"></div>
+		<!-- Header -->
+        <div id="header">
+                <div id="account_info"> 
+					<div class="setting"><b>Bonjour,</b> <b class="blue">{{ user.username|e }}</b><img src="{{ asset('bundles/sofidcommercant/images/gear.png') }}" class="gear"  alt="Profile Setting" >
+                  </div>
+					<div class="logout" title="Disconnect"><b >D&eacute;connexion</b><img src="{{ asset('bundles/sofidcommercant/images/connect.png') }}" name="connect" class="disconnect" alt="disconnect" ></div> 
+                </div>
+            </div><!-- End Header -->
+			<div id="shadowhead"></div>
+              {% block menu %}   
+              <div id="left_menu">
+                    <ul id="main_menu" class="main_menu">
+                      <li class="limenu select"><a href="{{ path('home_fidele') }}"><span class="ico gray shadow home" ></span><b>Accueil</b></a></li>
+					  <li class="limenu" ><a href="{{ path('edit_fidele') }}" ><span class="ico gray shadow administrator"></span><b>Profil</b></a></li>
+                    </ul>
+              </div>          
+			  {% endblock %}  
+              <div id="content">
+                <div class="inner">
+					<div class="topcolumn">
+						<div class="logo"></div>
+                            <ul  id="shortcut">
+                                
+                            </ul>
+							<div class="clear"></div>
+					</div>
+                    <div class="clear"></div>               
+                    <!-- full width -->
+                    <div class="widget" >
+                        <div class="header"><span ><span class="ico gray stats_lines"></span>{% block titre %}{% endblock %}</span></div>
+                        <div class="content" > <br  class="clear"/>
+						
+		    				{% for flashMessage in app.session.flashbag.get('notice') %}
+							    <div class="flash-notice">
+									{{ flashMessage }}
+							    </div>
+							{% endfor %}
+
+							{% block content %}{% endblock %}
+
+                            <!-- clear fix -->
+							<div class="clear"></div>
+							
+                        </div><!-- End content -->
+                    </div><!-- End full width -->
+                        
+					<!-- clear fix -->
+					<div class="clear"></div>
+
+                    <div id="footer"> &copy; Copyright 2013 |<span class="tip"> SoFID </span> </div>
+
+                </div> <!--// End inner -->
+              </div> <!--// End content --> 
+</body>
+</html>

@@ -1,0 +1,17 @@
+_sms_create:
+    pattern:  /create
+    defaults: { _controller: SofidUserBundle:Commercant:createClient}
+    requirements:
+      _method:  GET
+
+_sms_send:
+    pattern:  /send
+    defaults: { _controller: SofidUserBundle:Commercant:sendSMS}
+    requirements:
+      _method:  POST
+    options:
+        expose: true
+        
+sms:
+    pattern:  /
+    defaults: { _controller: SofidUserBundle:Commercant:sms}

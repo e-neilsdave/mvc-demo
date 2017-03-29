@@ -1,0 +1,129 @@
+{% extends "SofidCommercantBundle::dashboard.html.twig" %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('input').tipsy({fade: true, gravity: 'w'});
+            $('#add').on('click', function(){
+
+            });
+
+            $("#submit").click(function() {
+
+                loading('Checking');
+                $('#preloader').html('Envoi...');
+
+                var question_title = $("#question_title").val();
+                var question_id = $("#question_id").val();
+                var completion_point = $("#completion_point").val();
+                var comment_point = $("#comment_point").val();
+                var delay = $("#delay").val();
+                var divided_value = $("#divided_value").val();
+                var delayed_customer_message = $("#delayed_customer_message").val();
+                var delayed_thanks_message = $("#delayed_thanks_message").val();
+                var option_title = $('input[name="option_title[]"]').map(function () {
+                    return $(this).val();
+                }).get();
+
+                if($('input[name="is_active"]:checked').length > 0) {
+                    var is_active = 1;
+                } else {
+                    var is_active = 0;
+                }
+
+                $.ajax({
+                    url: Routing.generate('pool_edit'),
+                    type: 'POST',
+                    data: { question_title: question_title, option_title: option_title,
+                            comment_point: comment_point, completion_point: completion_point,
+                            delay: delay, divided_value: divided_value, delayed_customer_message: delayed_customer_message,
+                            delayed_thanks_message: delayed_thanks_message, question_id: question_id, is_active: is_active},
+
+                    success: function(data, textStatus, xhr) {
+                        if (data.error)
+                        {
+                            if (data.error == "2")
+                            {
+                                showError('Aucun fid&egrave;le',5000);
+                            }else
+                            {
+                                showError('Echec',5000);
+                            }
+                            unloading();
+                        }else {
+                            showSuccess('Succ&egrave;s',5000);
+                            unloading();
+                        }
+                    },
+                    error: function(xhr, textStatus, errorThrown) {
+                        unloading();
+                    }
+                });
+            });
+
+        });
+    </script>
+{% endblock %}
+
+{% block titre %}Satisfaction{% endblock %}
+
+{% block content %}
+
+    <form action="" method="POST" id="validation_demo">
+
+        <!-- Third / Half column-->
+        <div class="widgets">
+            <div class="oneThree">
+            </div>
+
+            <div class="twoOne">
+
+                <div class="section ">
+                    <input type="hidden" name="question_id" id="question_id" value="{{ question.id }}" />
+
+                    <label>Phrase d’introduction</label>
+                    <div class="controls"><input name="question_title" id="question_title" type="text" value="{{ question.title }}" title="Hint: Quelle est votre opinion au sujet de:" /></div>
+
+                    <label>Nombre de points gagnés pour la soumission</label>
+                    <div class="controls"><input name="completion_point" id="completion_point" type="text" value="{{ question.completionPoint }}" title="Hint: 5" /></div>
+
+                    <label>Points gagnés par commentaire laissé</label>
+                    <div class="controls"><input name="comment_point" id="comment_point" type="text" value="{{ question.commentPoint }}" title="Hint: 2" /></div>
+
+                    {% for key, option in question.option %}
+                    <label>Elément évalué no. {{ key+1 }}</label>
+                    <div class="controls">
+                        <input name="option_title[]" id="option_title_{{ key+1 }}" type="text" value="{{ option.title }}" title="Hint: L’accueil" />
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="section">
+                    <label>Delai de re-soumission</label>
+                    <div class="controls"><input name="delay" id="delay" value="{{ question.delay }}" type="text" title="Hint: 10 days" /></div>
+
+                    <label>Dénominateur de re-soumission</label>
+                    <div class="controls"><input name="divided_value" id="divided_value" type="text" value="{{ question.dividedValue }}" title="Hint: 5" /></div>
+
+                    <label>Message d’information de re-soumission</label>
+                    <div class="controls"><input name="delayed_customer_message" id="delayed_customer_message" type="text" value="{{ question.delayedCustomerMessage }}" title="Hint: are you want to pool?" /></div>
+
+                    <label>Message en cas de re-soumission</label>
+                    <div class="controls"><input name="delayed_thanks_message" id="delayed_thanks_message" type="text" value="{{ question.delayedThanksMessage }}" title="Hint: are you want to pool?" /></div>
+                </div>
+
+                <div class="section last">
+                    <input type="checkbox" name="is_active" id="is_active" {% if question.isActive == 1 %} checked {% endif %} /> <b>Actif</b>
+                </div>
+
+                <div class="section last">
+                    <input type="button" value="confirmer" class="uibutton submit_form" id="submit" />
+                </div>
+
+            </div><!-- End Third / Half column-->
+        </div>
+    </form>
+
+{% endblock %}

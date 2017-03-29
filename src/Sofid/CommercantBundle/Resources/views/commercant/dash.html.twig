@@ -1,0 +1,103 @@
+{% extends "SofidCommercantBundle::dashboard.html.twig" %}
+
+        {% block javascripts %}
+        {{ parent() }}
+        <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+		<script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+	    <script type="text/javascript">
+	    $(function () {
+		    
+		    $("#submit").click(function() {
+			    
+		    	 loading('Checking');
+				 $('#preloader').html('Modif...');
+				 
+				 var nb = $("#ticket").val();
+
+		    	$.ajax({
+                    url: Routing.generate('change_ticket', { nb: nb }),
+                    type: 'POST',
+                    success: function(data, textStatus, xhr) {
+                    	showSuccess('Succ&egrave;s',5000); 
+                    	unloading();
+                    	$('#ca').html('<h1>'+data.result+'&euro;</h1>');
+                    },
+                    error: function(xhr, textStatus, errorThrown) {
+                    	unloading();
+                    }
+                });
+		    });
+
+		    $("#submitEphem").click(function() {
+			    
+		    	 loading('Checking');
+				 $('#preloader').html('Modif...');
+				 
+				 var nb = $("#ticketEphem").val();
+
+		    	$.ajax({
+                   url: Routing.generate('change_ticket_ephem', { nb: nb }),
+                   type: 'POST',
+                   success: function(data, textStatus, xhr) {
+                   	showSuccess('Succ&egrave;s',5000); 
+                   	unloading();
+                   	$('#ca').html('<h1>'+data.result+'&euro;</h1>');
+                   },
+                   error: function(xhr, textStatus, errorThrown) {
+                   	unloading();
+                   }
+               });
+		    });
+	    
+	    });
+	    </script>
+        {% endblock %}
+
+{% block titre %}Dashboard{% endblock %}
+	    
+{% block content %}
+
+<center>
+
+	<table CELLSPACING=30>
+		<tr>
+			<td>
+				<div class="shoutcutBox" > <center><span class="ico gray coin"></span> <strong id="ca"><h1>{{ ca }}&euro;</h1></strong> <h4>CA Fid&eacute;lit&eacute;</h4>  </center></div>
+				<div class="breaks"><span></span></div>
+			</td>
+			<td>
+			    <div class="shoutcutBox"> <center><span class="ico gray group"></span> <strong><h1>{{ nb_fideles }}</h1></strong> <h4>Fid&egrave;les</h4> </center></div>
+			    <div class="breaks"><span></span></div>
+			</td>
+		</tr>
+		<tr>
+			<td>								
+			    <div class="shoutcutBox" > <center><span class="ico gray star"></span> <strong><h1>{{ recompenses_paliers }}</h1></strong> <h4>Demandes de R&eacute;compenses normales</h4> </center></div>
+				<div class="breaks"><span></span></div>
+			</td>
+			<td>
+				<div class="shoutcutBox" > <center><span class="ico gray target"></span> <strong><h1>{{ recompenses_offres }}</h1></strong> <h4>Demandes de R&eacute;compenses &eacute;ph&eacute;m&egrave;res</h4> </center></div>
+				<div class="breaks"><span></span></div>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">								
+			    <div class="shoutcutBox"> <center><span class="ico gray access_point"></span> <strong><h1>{{ shares }}</h1></strong> <h4>Partages Facebook</h4> </center></div>
+			</td>
+		</tr>
+	</table>
+	
+	    <div class="section ">
+            <label>Valeur Ticket Moyen</label> 
+            <input type="text" id="ticket" name="ticket" value="{{ ticket|e }}"/>
+            <input type="button" value="confirmer" class="uibutton submit_form" id="submit" />
+        </div>
+        <div class="section ">
+            <label>Valeur Ticket &Eacute;ph&eacute;m&egrave;re Moyen</label> 
+            <input type="text" id="ticketEphem" name="ticketEphem" value="{{ ticketEphem|e }}"/>
+            <input type="button" value="confirmer" class="uibutton submit_form" id="submitEphem" />
+        </div>  <br />  
+	
+</center>
+
+{% endblock %}

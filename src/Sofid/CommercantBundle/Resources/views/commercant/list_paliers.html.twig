@@ -1,0 +1,92 @@
+{% extends "SofidCommercantBundle::dashboard.html.twig" %}
+
+        {% block javascripts %}
+        {{ parent() }}
+        <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+		<script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+	    <script type="text/javascript">
+	    $(function () {
+		    
+		    $("#add").click(function() {
+			    
+		    	 loading('Checking');
+				 $('#preloader').html('Ajout...');
+
+		    	$.ajax({
+                    url: Routing.generate('add_palier'),
+                    type: 'POST',
+                    success: function(data, textStatus, xhr) {
+
+                    	var path = Routing.generate('edit_palier', { id: data.id });
+                    	unloading();
+        				$("#paliers").append('<tr><td>'+data.nombre+'</td><td>1</td><td ></td><td ><span class="tip" ><a href="'+path+'" title="Edit" ><img src='+$("#editsrc").val()+' ></a></span><span class="tip" ><a id="'+data.id+'" class="Delete"  name="'+data.nombre+'" title="Delete"><img src='+$("#deletesrc").val()+' ></a></span></td></tr>');
+        				$('#error').html();
+                    },
+                    error: function(xhr, textStatus, errorThrown) {
+                    	setTimeout("unloading();",900);
+                    	$('#error').html("Veuillez r&eacute;essayer!"); 
+                    }
+                });
+		    });
+	    
+	    });
+	    </script>
+        {% endblock %}
+        
+{% block titre %}Liste des paliers{% endblock %}
+{% block content %}
+
+<input type="hidden" id="editsrc" value="{{ asset('bundles/sofidcommercant/images/icon/icon_edit.png') }}">
+<input type="hidden" id="deletesrc" value="{{ asset('bundles/sofidcommercant/images/icon/icon_delete.png') }}">
+
+                      <div id="UITab">
+                      <div class="tab_container" >
+
+                          <div id="tab1" class="tab_content"> 
+                            <div class="load_page">
+
+                              <form>
+							  <div class="tableName inTab">
+                              <table class="display data_table1 "  id="data_table1">
+                                <thead>
+                                  <tr>
+                                    <th width="352" >Num Palier</th>
+                                    <th width="174" >Nombre de Points Par Palier</th>
+                                    <th width="246" >R&eacute;compense</th>
+                                    <th width="199" >Manager</th>
+                                  </tr>
+                                </thead>
+                                <tbody id="paliers">
+                                {% for palier in paliers %}
+							        <tr>
+                                    <td>{{ palier.numPalier|e }}</td>
+                                    <td >{{ palier.nbPointPalier|e }}</td>
+                                    <td >{{ palier.recompense|e }}</td>
+                                    <td >
+                                      <span class="tip" >
+                                          <a href="{{ path('edit_palier', { 'id': palier.id }) }}" title="Modifier" >
+                                              <img src="{{ asset('bundles/sofidcommercant/images/icon/icon_edit.png') }}" >
+                                          </a>
+                                      </span> 
+                                      <span class="tip" >
+                                          <a id="{{ palier.id }}" class="Delete"  name="{{ palier.numPalier|e }}" title="Delete"  >
+                                              <img src="{{ asset('bundles/sofidcommercant/images/icon/icon_delete.png') }}" >
+                                          </a>
+                                      </span> 
+                                    </td>
+                                  </tr>
+							    {% endfor %}
+                                </tbody>
+                              </table>
+							  </div>
+                              </form>
+                              </div>	
+                          </div><!--tab1-->
+                          
+                  </div>
+                  </div><!-- End UITab -->
+                  
+                  <div id="error"></div>
+                  
+                  <a  class="uibutton special" id="add">Ajouter un palier</a>
+{% endblock %}

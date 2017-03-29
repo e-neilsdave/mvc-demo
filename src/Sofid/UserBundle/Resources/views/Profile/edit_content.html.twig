@@ -1,0 +1,85 @@
+<form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST" class="fos_user_profile_edit form-horizontal" id="validation_demo">
+    
+    					<!-- Third / Half column-->
+						<div class="widgets">
+							<div class="oneThree">
+                                    <div class="profileSetting" >
+                                           <div class="avartar">
+                                           {{ form_widget(form.image) }}
+                                           <p align="center"><span>Photo du commer&ccedil;ant</span></p>
+                                           </div>
+                                    </div>
+                            </div>
+
+                            <div class="twoOne">
+
+{{ form_errors(form) }}
+        <div class="section ">
+            <label>Mot de Passe Actuel (v&eacute;rification)</label> 
+            <div class="controls">{{ form_widget(form.current_password) }}</div>
+        </div>                    
+        <div class="section ">
+            <label>Username</label> 
+            <div class="controls">{{ form_widget(form.username) }}</div>
+        </div>                 
+        <div class="section ">
+            <label>Pr&eacute;nom</label> 
+            <div class="controls">{{ form_widget(form.firstname) }}</div>
+        </div>
+        <div class="section ">
+            <label>Nom</label> 
+            <div class="controls">{{ form_widget(form.lastname) }}</div>
+        </div>
+        <div class="section ">
+            <label>Email</label> 
+            <div class="controls">{{ form_widget(form.email) }}</div>
+        </div> 
+        <div class="section ">
+            <label>Sexe</label> 
+            <div class="controls">{{ form_widget(form.gender) }}</div>
+        </div>
+        <div class="section ">
+            <label>Entreprise</label> 
+            <div class="controls">{{ form_widget(form.entreprise) }}</div>
+        </div>
+        <div class="section ">
+            <label>Site Web</label> 
+            <div class="controls">{{ form_widget(form.website) }}</div>
+        </div>
+        <div class="section ">
+            <label>Date de Naissance</label> 
+            <div class="controls">{{ form_widget(form.dateOfBirth, {'attr': {'class': 'span1'}}) }}</div>
+        </div>
+        <div class="section ">
+            <label>T&eacute;l&eacute;phone</label> 
+            <div class="controls">{{ form_widget(form.phone) }}</div>
+        </div>
+        <div class="section ">
+            <label>Adresse</label> 
+            <div class="controls">{{ form_widget(form.adresse) }}</div>
+        </div>
+        <div class="section ">
+            <label>Code Postal</label> 
+            <div class="controls">{{ form_widget(form.codePostal) }}</div>
+        </div>
+        <div class="section ">
+            <label>Ville</label> 
+            <div class="controls">{{ form_widget(form.ville) }}</div>
+        </div>
+        <div class="section ">
+            <label>Pays</label> 
+            <div class="controls">{{ form_widget(form.pays) }}</div>
+        </div>
+        <div class="section ">
+            <label>Raison sociale</label> 
+            <div class="controls">{{ form_widget(form.raisonSociale) }}</div>
+        </div>
+
+        <div class="section last">
+        {{ form_rest(form) }}
+        	<input type="submit" value="{{ 'profile.edit.submit'|trans({}, 'FOSUserBundle') }}" class="uibutton submit_form" />
+        </div>
+
+						</div><!-- End Third / Half column-->
+    
+</form>

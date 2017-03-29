@@ -1,0 +1,35 @@
+list_offres:
+    pattern:  /
+    defaults: { _controller: SofidAdminBundle:Offre:offres }
+    
+retrieve_offres:
+    pattern:  /retrieve
+    defaults: { _controller: SofidAdminBundle:Offre:retrieveOffres }
+    requirements:
+      _method:  POST
+    options:
+        expose: true
+        
+add_offres:
+    pattern:  /add
+    defaults: { _controller: SofidAdminBundle:Offre:addOffres }
+    requirements:
+      _method:  POST
+    options:
+        expose: true
+        
+update_offres:
+    pattern:  /update
+    defaults: { _controller: SofidAdminBundle:Offre:updateOffres }
+    requirements:
+      _method:  POST
+    options:
+        expose: true
+        
+delete_offres:
+    pattern:  /delete
+    defaults: { _controller: SofidAdminBundle:Offre:deleteOffres }
+    requirements:
+      _method:  POST
+    options:
+        expose: true

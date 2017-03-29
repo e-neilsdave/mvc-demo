@@ -1,0 +1,46 @@
+{% if gains|length > 0 %}
+	<div id="UITab">
+		<div class="tab_container" >
+			<div id="tab1" class="tab_content"> 
+				<div class="load_page">
+					<form action="{{ path('customeroptin_fidele') }}" method="POST" id="validation_demo">
+						<div class="tableName inTab">
+							<table class="display data_table1 "  id="data_table1">
+								<thead>
+									<tr>
+										<th width="352" >Commercant</th>
+										<th width="174" >Email</th>
+										<th width="174" >SMS</th>
+									</tr>
+                                </thead>
+								<tbody id="gains">
+									{% for gain in gains %}
+										{% set customeroptions= '' %}
+										{% set customersmsoptions='' %}
+										{% set merchantid= gain.commercant.id %}
+										{% if custoptin[merchantid]['emailoption'] == '1' %}
+											{% set customeroptions= 'checked="checked"' %}
+										{% endif %}												
+										{% if custoptin[merchantid]['smsoption'] == '1' %}
+											{% set customersmsoptions= 'checked="checked"' %}
+										{% endif %}												
+										<tr>
+											<td><input type="hidden"  value="{{ gain.commercant.id }}" name="merchantids[]" /> {{ gain.commercant.entreprise|e }}</td>
+											<td ><input type="checkbox" {{ customeroptions }}  value='1' name="emailoption[]" id="emailoption"></td>
+											<td ><input type="checkbox" {{ customersmsoptions }} value='1' name="smsoption[]" id="smsoption"></td>
+										</tr>
+									{% endfor %}
+                                </tbody>
+                              </table>
+						  </div>
+							<div class="section last">
+								<input type="submit" value="Modifier" class="uibutton submit_form" />
+							</div>
+					  </form>
+				  </div>	
+				</div><!--tab1-->
+			</div>
+		</div><!-- End UITab -->
+{% else %}
+	Aucun point de fid&eacute;lit&eacute; pour le moment!                 
+{% endif %}

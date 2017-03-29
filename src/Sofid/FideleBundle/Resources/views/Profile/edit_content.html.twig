@@ -1,0 +1,53 @@
+<form action="{{ path('update_fidele') }}" {{ form_enctype(edit_form) }} method="POST" id="validation_demo">
+    
+    <input type="hidden" name="_method" value="PUT" />
+    	
+    	<!-- Third / Half column-->
+	<div class="widgets">
+		<div class="oneThree">
+        </div>
+
+        <div class="twoOne">
+
+			{{ form_errors(edit_form) }}
+	                            
+	        <div class="section ">
+	            <label>Nom d'utilisateur</label>
+	            {{ form_errors(edit_form.username) }} 
+	            <div class="controls">{{ form_widget(edit_form.username) }}</div>
+	        </div>                 
+	        <div class="section ">
+	            <label>Mot de Passe</label> 
+	            {{ form_errors(edit_form.password.pass) }}
+	            <div class="controls">{{ form_widget(edit_form.password.pass) }}</div>
+	        </div>
+	        <div class="section ">
+	            <label>Confirmation Mot de Passe</label> 
+	            {{ form_errors(edit_form.password.confirm) }}
+	            <div class="controls">{{ form_widget(edit_form.password.confirm) }}</div>
+	        </div>
+	        <div class="section ">
+	            <label>Email</label> 
+	            {{ form_errors(edit_form.email) }}
+	            <div class="controls">{{ form_widget(edit_form.email) }}</div>
+	        </div>
+	        <div class="section ">
+	            <label>T&eacute;l&eacute;phone</label> 
+	            {{ form_errors(edit_form.telephone) }}
+	            <div class="controls">{{ form_widget(edit_form.telephone) }}</div>
+	        </div>
+	        <div class="section ">
+	            <label>Date de Naissance</label> 
+	            {{ form_errors(edit_form.dateNaissance) }}
+	            <div class="controls">{{ form_widget(edit_form.dateNaissance) }}</div>
+	        </div>
+	
+	        <div class="section last">
+	        {{ form_rest(edit_form) }}
+	        	<input type="submit" value="Modifier" class="uibutton submit_form" />
+	        </div>
+
+		</div><!-- End Third / Half column-->
+	</div>
+    
+</form>
